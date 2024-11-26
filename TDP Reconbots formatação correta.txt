@@ -1,0 +1,168 @@
+﻿3. SOFTWARE OVERVIEW - SENSORS AND EMBEDDED TECHNOLOGY            
+Reconbots @Home 2024
+DSPL Team Description Paper 
+Ivanoé João Rodowanski, Luzimário Lima Pereira , Thiago Henrique de A. Oliveira, Maurício Soares P. da Silva, Gustavo Santos O. Abbas, Thaisy Jennifer dos S. Ferreira, Gabriel Marcolino Silva, Filipe Novaes Moreira, Luiz Carlos S. S. Júnior , Igor Dantas dos S. Miranda, Tiago Palma Pagano, Gildeberto de Souza Cardoso, Gabriel.
+November 25, 2024.
+Abstract. The Recombots team (Reconcavo Robots) is composed of a group of students and professors from the Center for Exact and Technological Sciences (CETEC) at the Federal University of Recôncavo da Bahia (UFRB), located in the city of Cruz das Almas-BA. They are responsible for developing research and extension projects focused on technological innovation and the promotion of robotics in the academic field. The aim of developing the platform is to assist in activities carried out in the system simulation laboratories, Software Engineering, as well as to participate competitively in RoboCup@Home and to develop a robot capable of using the technique of mass creation of insects in areas that are unhealthy for humans, a technique used for biological control and research with entomopathogens. This document contains the descriptions and details of the project, as well as the development team. https://github.com/ReconBots/codes
+
+
+1. Introduction 
+The Reconbots team, linked to the Center for Exact and Technological Sciences at the Federal University of Recôncavo da Bahia (UFRB), was created on October 3, 2024. Some team members develop projects aimed at robotics competitions across different categories, where they have achieved numerous podium finishes in the Mega Sumo Radio Controlled and Mega Sumo Autonomous categories, as well as a runner-up position at the national championship held during Campus Party Brazil 2024 (CPBR16). Among the competitions they participate in are: Robocore Experience, Robodori, CDR Arena, ERBASE/Robobase, and Recôncavo Robot Challenge (RRC) (a competition organized and promoted by the team with private partnerships). In addition to participating in technological events, it is important to highlight the development of studies in the areas of actuators and microcontrollers aimed at use in platforms for technological advancement. Particularly in the @Home category, the group seeks to obtain a robot capable of performing human-machine interaction activities, such as speech and facial recognition, as well as mapping a simulated environment. The aim is to promote innovations in assistive robotics, expand access to education, and replace human labor in unhealthy environments with machines that can be remotely operated or act through AI. The research projects developed by team members have resulted in scientific publications, undergraduate theses, and postdoctoral research. The project originated from a public-private partnership between undergraduate students and professors from UFRB and the companies Limatec and M7tec. Limatec is responsible for the creation and commercialization of machines like ultra-freezers for laboratories, while M7tec works on project assembly with metal sheets, handling everything from laser cutting of various materials to bending and welding.
+For 2025 Robocup competitions, held in Salvador, Reconbosts try its first participation in @Home Competition, where want to show your first Robot Called SARAH (Robotics Autonomous Systems for Human Assist, in portuguese Sistema Autônomo Robótico para Assistência Humana)
+2. Challenges and Innovations
+   1. * A full stainless steel body designed by the team members.
+The integration of multiple sensors and recognition systems (facial and voice) in real-time is a challenge, as it requires a robust data synchronization system.
+   * The interaction through the LED mask is an innovation aimed at enhancing the robot's social perception, bringing it closer to human-like behavior and improving the user experience.
+   * The initial idea is to create a robot with movement guided by tracks, equipped with cameras that enable the capture and recognition of objects and mapping of environments. In addition to locomotion, the robot will be capable of manipulating items, as well as controlling the production of insects, allowing for diet adjustments, cleaning of the small cages where the insects will be stored, and counting insects per cage. Currently, the use of this technique requires a large number of people, working hours, and space. With the development of the project and the replacement of human labor with machines, insect production can occur without interruptions and in a more economical and less harmful way to the involved team, since the technique is often applied in environments that are unhealthy for humans.
+   *    3.  Software Overview - Sensors and Embedded Technology
+   1.    3. ROS - (Robot Operating System) is a flexible software framework designed for robot development. Although the name suggests it is an operating system, ROS is actually a collection of libraries and tools that facilitate the creation of complex robotic applications. It provides infrastructure for communication between different software components, allowing developers to integrate sensors, actuators, and control algorithms in a modular way. Its main features are: 
+
+
+   * Modularity – ROS allows developers to create different components called "nodes" that can communicate with each other. This facilitates code reuse.
+   * Communication – Through ROS, a publish-subscribe system can be used, where nodes can publish messages to topics, and other nodes can subscribe to receive those messages.
+   * Tools – It comes with a variety of tools that assist in robot development, testing, and visualization, such as Rviz (for visualization) and Gazebo (for simulation).
+   *    3. The robot chassis was designed using CAD software, where the dimensions and materials of the parts were defined. The structure is connected to sensors capable of detecting sound waves from speech. 
+  
+
+
+
+  
+
+Fig. 1: Structure of the robot SARAH from the Reconbots team for RoboCup @Home 2025 in isometric view.
+
+
+Fig. 2: Structure of the robot SARAH from the Reconbots team for RoboCup @Home 2025 in side view.
+   *    3. Mapping -  LIDAR (Light Detection and Ranging), is a remote sensing technology that uses light to measure distances and create three-dimensional maps of environments, being responsible for mapping the environment in which the robot will be inserted. Its operation can be grammatically reproduced through four stages: the emission of laser pulses, reflection (the laser pulses hit the object(s) or surface(s) and are reflected back to the sensor), measurement of the return time (the system calculates the time it took for the laser pulse(s) to return to the emission point), and data collection (LIDAR collects thousands of points per second, creating a point cloud that represents the surface or objects around). The collected distances are used to create a cloud, or a set of points collected through the emission of light pulses; through this cloud, it is possible to represent the structures of the environment in three dimensions.To conduct the tests for mapping the simulated environment and verifying the other configurations of the LIDAR, an arena similar to that used in the Brazilian championship held in Goiás in 2024 was created. The software used was Gazebo, through which the following items were added: two sofas, one bed, two trash cans, one refrigerator, three tables with chairs, one sink with a built-in stove, and a cabinet. After dimensioning the environment and adding the aforementioned furniture and appliances, the procedures for validating the sensor were initiated.
+  
+
+Fig. 3: Simulated environment similar to CBR 2024 in the @Home category in isometric view.
+  
+
+Fig. 4: Simulated environment similar to CBR 2024 in the @Home category from a top view.
+
+
+   3. Image Analysis and Object Recognition: Identifying People and Objects - To develop a way of detecting people and objects, we will use neural network, a search was carried out in Scopus, with the following search string: 
+ALL ( ( "people identification" OR "person identity" ) AND ( "machine learning" OR "deep learning" ) ) AND PUBYEAR > 2020 AND PUBYEAR < 2025 AND ( LIMIT-TO ( DOCTYPE , "ar" ) OR LIMIT-TO ( DOCTYPE , "cp" ) OR LIMIT-TO ( DOCTYPE , "re" ) ) AND ( LIMIT-TO ( LANGUAGE , "English" ) ) AND ( LIMIT-TO ( OA , "all" ) )
+This resulted in 216, 20 of which were manually selected to develop an optimal form for identifying people, 3 of them used Multi-Object Tracking(MOT), 7 used Face Recognition(FR), another 7 used Gait Recognition(GR), and the other 3 used Re-Identification(REID). The methods are described ahead: 
+   * Multi-Object Tracking: The MOT task is to locate multiple objects, given an input video, and give the original identities. Compared to other common objects, pedestrians are the ideal example to study MOT, at least 70% of current MOT searches are about pedestrians[5].
+   *    * Face Recognition: The human face is considered the best form of identifying a person in our society[3]. FR is a technique that is subject to problems such as partial facial occlusion, lighting, and variety of postures [3, 8].
+   *    * Gait Recognition: GR, also known as walking pattern recognition, is an approach biometric-based that recognizes a person based on the way they walk[6, 7].  Recognizing gait accurately is subject to covariable factors, the complexity and variability of environments and variations in representations of the human body[9].
+   *    * Re-Identification: REID is a retrieval problem, which aims to identify a person that appears on the camera image, in different time instances and locations[4].
+The task can be performed in different ways, and all of them have advantages and disadvantages, the one that seems least applicable, in principle, is FR, which has serious facial occlusion problems since one of the tasks requires the robot to follow a person in back, as it does not have access to the person's face, this makes this method less appropriate for implementation.
+  Anyway, the other 3 methods are valid for implementation and require more study after implementation to decide what is better for our purpose in RoboCup@Home competition.
+   3. Robotic Manipulator - In order to meet the requirements of RoboCup @Home, the Reconbots team opted to develop a robotic manipulator designed using CAD software. 
+
+
+
+
+
+
+
+
+
+
+The manipulator has five degrees of freedom (1 prismatic, 4 angular and 1 end effector) facilitating object manipulation and expanding the range of movements that the robotic arm can execute, as well as reorganizing items and moving pieces. Each component of the manipulator was planned to maximize efficiency, focusing on movement precision and grip stability. The joints were configured to provide adequate reach and smooth movements. For the manipulator's gripper, TPU (thermoplastic polyurethane) was chosen, a material commonly used in applications that require good elasticity, durability, and deformation capabilities. TPU is able to stretch while maintaining its shape after deformation, making it ideal for components such as robotic grippers, where it needs to conform to the shape of objects of different sizes and textures. Additionally, it is highly resistant to abrasion, oils, and chemicals, making it suitable for the range of domestic tasks the robot will perform. For the entire body of the manipulator, the chosen material was PLA (a type of filament used for 3D printing that is biodegradable). Using SolidWorks, it was possible to simulate and validate the manipulator's behavior under various conditions, ensuring that it met the rigorous performance requirements of the competition. The modular design also allows for continuous adjustments and improvements, enabling the Reconbots team to optimize the manipulator. 
+
+
+  
+
+Fig. 5: Robotic manipulator of the robot Sarah from the Reconbots team, projection in CAD software.
+  
+
+Fig. 6: Robotic manipulator of the robot Sarah from the Reconbots team, produced using 3D printing.
+
+
+   3. Voice Recognition - The operation of voice recognition in the robot Sarah from the Reconbots team in the @Home category is a sophisticated process that begins with the capture of audio through a common microphone integrated into the chassis. This microphone, despite its simplicity, performs an indispensable task: capturing the voice spoken by the user. After the audio is captured, the system relies on Google Assistant to transcribe the voice commands into a textual format. This conversion is crucial, as the accuracy of the transcription determines the effectiveness of command recognition. To significantly improve the performance of this process, voice tests have been implemented from an existing virtual library. The first command to initiate the capture of the user's audio will be "Ok, Sarah," which will function as an activation signal, allowing the robot to perform voice recognition and proceed with the entire process of textual transcription and interpretation of the identified commands.
+   1.    3. Incremental Rotary Encoders - They were incorporated into the robot Sarah from the Reconbots team with the aim of enhancing the project's performance in the RoboCup @Home competition. These devices, installed on the robot's wheels, provide precise data on the rotation speed, allowing for more effective control of movements. With the use of encoders, it is possible to measure the distance traveled and the speed in real time, enabling a more accurate dimensioning of the robot's trajectories and maneuvers. This precision is fundamental for executing complex tasks, such as navigating dynamic environments and interacting with objects and users, as is the case in this category.
+
+
+   4. Expected Results 
+   1.    * Enhanced Performance - the implementation of the robotic system is expected to improve efficiency and accuracy in the tasks performed.
+   * Precise Mapping - the use of technologies like LIDAR is expected to provide detailed and accurate mapping of the environment, facilitating the robot's navigation.
+   * Social Engagement - the robot will be able to recognize faces and respond to voice commands, which enhances human-machine interaction and is crucial for performing tasks in the @Home category.
+   * Feedback and Learning - the system is expected to collect data that can be used to continuously improve the robot's performance and functionality.
+   * Robustness and Reliability - the system should demonstrate robustness under various operational conditions, ensuring its reliability in real-world applications.
+
+
+
+
+
+
+
+
+6 Conclusion 
+The opportunity to compete in the @Home challenges is a significant and important advancement for the newly formed Reconbots team, which, in a short period of time, has demonstrated its dedication to the production of the Sarah robot in partnership with the companies Limatec and M7tec. In addition to the multidisciplinary approach applied in the Sarah project, the work brings scientific innovations through the use of machines to facilitate the replacement of human labor in the mass production technique of insects, enabling pest control, cost reduction, and time savings, redirecting human work from an unhealthy environment to a safe one. In addition to market implementation, the system includes a voice recognition and command system through a simple microphone and utilizes an existing testing library, through which an accuracy of 88.18% was achieved in recognition tests.
+References 
+   1. Y. Tao et al., “A safety posture field framework for mobile manipulators based on human–robot interaction trend and platform-arm coupling motion,” Robotics and Computer-Integrated Manufacturing, vol. 93, p. 102903, Jun. 2025, doi: 10.1016/j.rcim.2024.102903.
+   2. P. Neduchal, L. Bureš, and M. Železný, “Environment detection system for localization and mapping purposes,” in IFAC-PapersOnLine, Elsevier B.V., 2019, pp. 323–328. doi: 10.1016/j.ifacol.2019.12.681.
+   3. Rusia, M. K., & Singh, D. K. (2023). A comprehensive survey on techniques to handle face identity threats: challenges and opportunities. Multimedia Tools and Applications, 82(2), 1669–1748.
+   4. Luna, C. A., Losada-Gutiérrez, C., Fuentes-Jimenez, D., & Mazo, M. (2021). People re-identification using depth and intensity information from an overhead camera. Expert Systems with Applications, 182, 115287.
+   5. Luo, W., Xing, J., Milan, A., Zhang, X., Liu, W., & Kim, T.-K. (2021). Multiple object tracking: A literature review. Artificial Intelligence, 293, 103448.
+   6. Mehmood, A., Khan, M. A., Tariq, U., Jeong, C.-W., Nam, Y., Mostafa, R. R., & ElZeiny, A. (2021). Human gait recognition: A deep learning and best feature selection framework. Computers, Materials and Continua, 70(1), 343–360.
+   7. Macwan, K., & Shah, H. (2023). GAIT technology for human recognition using CNN. International Journal on Recent and Innovation Trends in Computing and Communication, 11(6s), 575–583.
+   8. Janarthanan, P., Murugesh, V., Sivakumar, N., & Manoharan, S. (2022). An efficient face detection and recognition system using RVJA and SCNN. Mathematical Problems in Engineering, 2022, 7117090.
+   9. Khaliluzzaman, Md., Uddin, A., Deb, K., & Hasan, M. J. (2023). Person recognition based on deep gait: A survey. Sensors, 23(10), Article 4875.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+Robot Sarah Hardware Description 
+Robot Sarah has been designed for human interaction in the domestic environment. Specifications are as follows: 
+– Base: Custom design 4 differential wheeled platform. 
+• Sensors: 
+◦4 incremental encoder for wheels;
+◦1 Slantec RPLidar C1, for mapping;
+• Actuators: 
+ ◦ 4 Integy Matrix Pro Lathe DC motors with Banebots P60 gear boxes 126:1 ratio, to drive wheels;
+◦ 1 step motor Wotion nema 23, 200 SPR with a drive screw.
+◦ 5 Tower Pro MG 996 servo motors for arm.
+
+
+ Chest: 
+        •Face display 
+        ◦ Shinning Mask SL016
+• Sensors: 
+◦ Emergency switch 
+• Sensors: 
+◦ StereoLabs ZED2 
+◦ Logitech c920 webcam 
+◦ microphone - BOYA BY-M100UA
+– Control: Notebook Nitro 5 I5 RTX3050. 
+
+
+Robot’s Software 
+Description 
+ For our project we are using the following software: 
+– OS: Ubuntu 20.04; 
+– Middleware: ROS Noetic; 
+– Localization/Navigation/Mapping: SLAM; 
+– Face detection: Haar cascades; – Face recognition: LBP Algorithm; – People detection and tracking: OpenPose 
+– Gestures/movement recognition: Wave! and NITE; 
+– Object recognition: MobileNet v2 + SSD on Synthetic Data; 
+– Object manipulation: Moveit! and OctoMap; 
+– Speech recognition: DeepSpeech (offline) or a package based on the Speech Recognition library (on line); 
+– Speech synthesis: Flite (offline) or GTTs (online). 
+– Simulation environment: Gazebo inside a Docker Container 
+
+
+External Devices 
+Sarah robot relies on the following external hardware: 
+– JBL 
+– Nvidia RTX3050. 
+Cloud Services 
+Sarah connects the following cloud services: 
+– Google API for voice recognition and synthesis.
